@@ -1,11 +1,10 @@
 'use strict';
-const moment = require('moment')
-
+const helper = require('../helper')
 module.exports = {
   up: (queryInterface, Sequelize) =>
     queryInterface.bulkInsert('events', [
-      { date: new Date(), detail: 'meeting', createdAt: new Date(), updatedAt: new Date(), user_id: 1 },
-      { date: new Date(), detail: 'hangout', createdAt: new Date(), updatedAt: new Date(), user_id: 1 },
+      { date: helper.cusDate(17), detail: 'meeting', user_id: 1 },
+      { date: helper.cusDate(18), detail: 'hangout', user_id: 1 },
     ])
   ,
 

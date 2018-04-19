@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('transaction_type', {
+    return queryInterface.createTable('transaction_types', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,26 +14,18 @@ module.exports = {
       is_income: {
         type: Sequelize.BOOLEAN
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     })
     .then(function () {
-      return queryInterface.addColumn('transaction', 'type_id', {
+      return queryInterface.addColumn('transactions', 'type_id', {
         type: Sequelize.INTEGER,
         after: 'id'
       });
     }).then(function () {
-      return queryInterface.addConstraint('transaction', ['type_id'], {
+      return queryInterface.addConstraint('transactions', ['type_id'], {
         type: 'FOREIGN KEY',
-        name: 'transaction_type',
+        name: 'transaction_types',
         references: {
-          table: 'transaction_type',
+          table: 'transaction_types',
           field: 'id'
         },
         onDelete: 'cascade'
@@ -41,6 +33,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('transaction_type');
+    return queryInterface.dropTable('transaction_types');
   }
 };

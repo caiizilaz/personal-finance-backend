@@ -14,21 +14,13 @@ module.exports = {
       detail: {
         type: Sequelize.TEXT
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     }).then(function () {
-      return queryInterface.addColumn('transaction', 'event_id', {
+      return queryInterface.addColumn('transactions', 'event_id', {
         type: Sequelize.INTEGER,
         after: 'id'
       });
     }).then(function () {
-      return queryInterface.addConstraint('transaction', ['event_id'], {
+      return queryInterface.addConstraint('transactions', ['event_id'], {
         type: 'FOREIGN KEY',
         name: 'events',
         references: {

@@ -20,17 +20,9 @@ module.exports = {
       is_admin: {
         type: Sequelize.BOOLEAN
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     }).then(function () {
       return [
-        queryInterface.addColumn('transaction', 'user_id', {
+        queryInterface.addColumn('transactions', 'user_id', {
           type: Sequelize.INTEGER,
           after: 'id'
         }),
@@ -41,7 +33,7 @@ module.exports = {
       ];
     }).then(function () {
       return [
-        queryInterface.addConstraint('transaction', ['user_id'], {
+        queryInterface.addConstraint('transactions', ['user_id'], {
           type: 'FOREIGN KEY',
           name: 'users',
           references: {

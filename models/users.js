@@ -5,10 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     email: DataTypes.STRING,
     is_admin: DataTypes.BOOLEAN
-  }, {});
+  }, {timestamps: false,});
   users.associate = function (models) {
-    models.users.hasMany(models.transaction, { foreignKey: "user_id", sourceKey: "id" });
-    models.users.hasMany(models.event, { foreignKey: "user_id", sourceKey: "id" });
+    models.users.hasMany(models.transactions, { foreignKey: "user_id", sourceKey: "id" });
+    models.users.hasMany(models.events, { foreignKey: "user_id", sourceKey: "id" });
   };
   return users;
 };

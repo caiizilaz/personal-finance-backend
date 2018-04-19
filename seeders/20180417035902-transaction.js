@@ -1,12 +1,12 @@
 'use strict';
-
+const helper = require('../helper')
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.bulkInsert('transaction', [
-      { date: new Date(), amount: 500, createdAt: new Date(), updatedAt: new Date(), type_id: 1, user_id: 1 },
-      { date: new Date(), amount: 1000, createdAt: new Date(), updatedAt: new Date(), type_id: 2, user_id: 1 },
-      { date: new Date(), amount: 150, createdAt: new Date(), updatedAt: new Date(), event_id: 1, type_id: 3, user_id: 1 },
-      { date: new Date(), amount: 50, createdAt: new Date(), updatedAt: new Date(), event_id: 2, type_id: 4, user_id: 1 },
+    queryInterface.bulkInsert('transactions', [
+      { date: helper.cusDate(17), amount: 500, type_id: 1, user_id: 1 },
+      { date: helper.cusDate(18), amount: 1000, type_id: 2, user_id: 1 },
+      { date: helper.cusDate(19), amount: 150, event_id: 1, type_id: 3, user_id: 1 },
+      { date: helper.cusDate(20), amount: 50, event_id: 2, type_id: 4, user_id: 1 },
     ])
   ,
 
