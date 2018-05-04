@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
   users.prototype.createToken = function createToken() {
     const token = jwt.sign(
       {
-        id: this.id
+        id: this.id,
+        username: this.username
       },
       constants.JWT_SECRET
     )

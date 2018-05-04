@@ -1,6 +1,6 @@
 import {
-  GraphQLList,
-  GraphQLInt,
+    GraphQLList,
+    GraphQLInt,
 } from 'graphql'
 
 import models from '../../../models/index.js'
@@ -13,7 +13,12 @@ export default {
             type: GraphQLInt
         }
     },
-    resolve(root, args) {
-        return models.transaction_types.findAll({where: args })
+    resolve(root, args, { user }) {
+        console.log(user)
+        if (user) {
+            return models.transaction_types.findAll({ where: args })
+        } else {
+            throw new Error('Unauth')
+        }
     }
 }
