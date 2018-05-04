@@ -1,9 +1,9 @@
 import models from '../../../models/index.js'
-import User from '../../types/user'
+import Auth from '../../types/auth'
 import UserInput from '../../inputs/user'
 
 export default {
-  type: User,
+  type: Auth,
   args: {
     user: {
       type: UserInput
@@ -15,8 +15,8 @@ export default {
       password: args.user.password,
       email: args.user.email,
       is_admin: args.user.is_admin,
-    }).save().then((data) => {
-      return models.users.findById(data.id)
+    }).save().then(user => {
+      return user.createToken()
     })
   }
 }

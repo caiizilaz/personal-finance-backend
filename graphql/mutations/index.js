@@ -5,6 +5,7 @@ import deleteTransactionType from './transaction-type/delete.js'
 import createUser from './user/create.js'
 import updateUser from './user/update.js'
 import deleteUser from './user/delete.js'
+import loginUser from './user/login.js'
 
 export default {
   createTransactionType,
@@ -14,4 +15,5 @@ export default {
   createUser,
   updateUser,
   deleteUser,
+  loginUser,
 }
