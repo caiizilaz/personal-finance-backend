@@ -1,26 +1,13 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import jwt from 'jsonwebtoken'
 import models from './models/index.js'
 import GraphHTTP from 'express-graphql'
 import Schema from './graphql'
-import constants from './config/constants'
+import auth from './auth'
 
 const app = express()
 
-const auth = async (req) => {
-  const bearerLength = "Bearer ".length;
-  const token = req.headers.authorization.slice(bearerLength)
-  try {
-    const { username } = await jwt.verify(token, constants.JWT_SECRET)
-    req.user = username
-  } catch (err) {
-    console.log(err)
-  }
-  req.next()
-}
-
-app.use(auth)
+app.use(auth.getHeaders)
 
 const server = port =>
   app.listen(port, () => console.log('Server is listening on port ' + port))

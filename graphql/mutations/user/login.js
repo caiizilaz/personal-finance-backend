@@ -12,12 +12,11 @@ export default {
     return models.users
       .findOne({ where: { username: args.username } })
       .then((user) => {
-        if (!user) {
-          throw new Error('User not exist!');
-        }
-
-        if (!user.authenticate(args.password)) {
-          throw new Error('Password not match!');
+        if (!user || !user.authenticate(args.password)) {
+          return {
+            token: null,
+            error: "Username or Password is not valid"
+          }
         }
 
         return user.createToken()

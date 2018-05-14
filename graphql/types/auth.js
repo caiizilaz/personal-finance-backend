@@ -12,6 +12,10 @@ export default new GraphQLObjectType({
         type: GraphQLString,
         description: "token",
       },
+      error: {
+        type: GraphQLString,
+        description: "error",
+      },
     }
   }
 })
